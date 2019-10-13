@@ -37,6 +37,16 @@ class App extends React.Component {
     });
   }
 
+  openEmail(id) {
+	const { emails }  = this.state;
+	const index = emails.findIndex(x => x.id === id);
+	emails[index].read = true;
+	this.setState({
+		selectedEmailId: index,
+		emails
+	});
+}
+
   render() {
     const {emails, selectedEmailId} = this.state;
     const currentEmail = emails.length>0 ? emails[selectedEmailId]:{};
@@ -55,7 +65,7 @@ class App extends React.Component {
             onEmailSelected={id => {
               this.openEmail(id);
             }}
-            selectedEmailId={this.state.selectedEmailId}
+            selectedEmailId={currentEmail.id}
             currentSection={this.state.currentSection}
           />
 

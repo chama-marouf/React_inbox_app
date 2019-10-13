@@ -19,6 +19,7 @@ const EmailList = ({ emails, onEmailSelected, selectedEmailId }) => {
             }}
             email={email}
             selected={selectedEmailId === email.id}
+            
           />
         );
       })}
