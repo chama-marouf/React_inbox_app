@@ -6,7 +6,7 @@ const EmailDetails = ({ email, onDelete })=>{
 
     if (!email) {
 		return (
-			<div className="email-content empty"></div>
+			<div className="email-content">Hey empty email</div>
 		);
 	}
     

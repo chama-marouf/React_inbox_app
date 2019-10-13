@@ -6,7 +6,7 @@ import './styles.css';
 const EmailList =({ emails, onEmailSelected, selectedEmailId } )=>{
     if (emails.length === 0) {
 		return (
-			<div className="ui segment email-list ">
+			<div className="ui segment ">
 				Nothing to see here, great job!
 			</div>
 		);

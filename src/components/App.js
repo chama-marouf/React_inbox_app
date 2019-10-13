@@ -7,11 +7,10 @@ import EmailDetails from "./EmailDetails";
 import emails from "../data/emails.json";
 
 class App extends React.Component {
+	
   constructor(args) {
     super(args);
-
     // Assign unique IDs to the emails
-
     let id = 0;
     for (const email of emails) {
       email.id = id++;
@@ -39,38 +38,37 @@ class App extends React.Component {
   render() {
     const currentEmail = 0;
     return (
-      <div >
-        
+      <div>
+	 
           <SideBar
             emails={this.props.emails}
             setSidebarSection={section => {
               this.setSidebarSection(section);
             }}
           />
-       
-          <EmailList
-            className="four wide columns"
-            emails={this.state.emails.filter(
-              x => x.tag === this.state.currentSection
-            )}
-            onEmailSelected={id => {
-              this.openEmail(id);
-            }}
-            selectedEmailId={this.state.selectedEmailId}
-            currentSection={this.state.currentSection}
-          />
       
 		
+        <div className="pusher ui grid">
+			
+            <EmailList
+              emails={this.state.emails.filter(
+                x => x.tag === this.state.currentSection
+              )}
+              onEmailSelected={id => {
+                this.openEmail(id);
+              }}
+              selectedEmailId={this.state.selectedEmailId}
+              currentSection={this.state.currentSection}
+            />
+          
           <EmailDetails
-           
             email={currentEmail}
             onDelete={id => {
               this.deleteMessage(id);
             }}
           />
         </div>
-
-	   
+      </div>
     );
   }
 }
