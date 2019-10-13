@@ -1,5 +1,4 @@
 import React from 'react';
-import './EmailDetail.css';
 
 
 const EmailDetails = ({ email, onDelete })=>{

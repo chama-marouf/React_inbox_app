@@ -4,23 +4,25 @@ import SideBar from "./SideBar";
 import EmailListItem from "./EmailListItem";
 import EmailList from "./EmailList";
 import EmailDetails from "./EmailDetails";
-import emails from "../data/emails.json";
+import data from "../data/emails.json";
+import axios from "axios";
+import {API_URL} from "../apis/Mock";
 
 class App extends React.Component {
-	
   constructor(args) {
     super(args);
-    // Assign unique IDs to the emails
-    let id = 0;
-    for (const email of emails) {
-      email.id = id++;
-    }
-
     this.state = {
       selectedEmailId: 0,
       currentSection: "inbox",
-      emails: emails
+      emails: []
     };
+  }
+
+  componentDidMount() {
+    axios.get(API_URL).then(res => {
+      const emails = res.data;
+      this.setState({ emails });
+    });
   }
 
   setSidebarSection(section) {
@@ -36,31 +38,27 @@ class App extends React.Component {
   }
 
   render() {
-    const currentEmail = 0;
+    const {emails, selectedEmailId} = this.state;
+    const currentEmail = emails.length>0 ? emails[selectedEmailId]:{};
     return (
       <div>
-	 
-          <SideBar
-            emails={this.props.emails}
-            setSidebarSection={section => {
-              this.setSidebarSection(section);
-            }}
-          />
-      
-		
+        <SideBar
+          emails={emails}
+          setSidebarSection={section => {
+            this.setSidebarSection(section);
+          }}
+        />
+
         <div className="pusher ui grid">
-			
-            <EmailList
-              emails={this.state.emails.filter(
-                x => x.tag === this.state.currentSection
-              )}
-              onEmailSelected={id => {
-                this.openEmail(id);
-              }}
-              selectedEmailId={this.state.selectedEmailId}
-              currentSection={this.state.currentSection}
-            />
-          
+          <EmailList
+            emails={emails}
+            onEmailSelected={id => {
+              this.openEmail(id);
+            }}
+            selectedEmailId={this.state.selectedEmailId}
+            currentSection={this.state.currentSection}
+          />
+
           <EmailDetails
             email={currentEmail}
             onDelete={id => {

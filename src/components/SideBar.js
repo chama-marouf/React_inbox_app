@@ -1,5 +1,5 @@
 import React from "react";
-import "./SideBar.css";
+
 
 const SideBar = ({ emails, setSidebarSection }) => {
   var unreadCount = 0;
@@ -11,7 +11,7 @@ const SideBar = ({ emails, setSidebarSection }) => {
       <div className="ui visible left vertical sidebar menu">
         <a className="item">
           <button className="massive ui black button">
-            Compose <i class="pensil icon"></i>
+            Compose <i className="pensil icon"></i>
           </button>
         </a>
 
@@ -19,51 +19,51 @@ const SideBar = ({ emails, setSidebarSection }) => {
           onClick={() => {
             setSidebarSection("inbox");
           }}
-          class="item"
+          className="item"
         >
-          <i class="inbox icon"></i>
+          <i className="inbox icon"></i>
           Inbox
-          <div class="ui label">51</div>
+          <div className="ui label">51</div>
         </a>
         <a
           onClick={() => {
             setSidebarSection("drafts");
           }}
-          class="item"
+          className="item"
         >
-          <i class="edit layout icon"></i>
+          <i className="edit layout icon"></i>
           Drafts
-          <div class="ui label">0</div>
+          <div className="ui label">0</div>
         </a>
         <a
           onClick={() => {
             setSidebarSection("sent");
           }}
-          class="item"
+          className="item"
         >
-          <i class="paper plane icon"></i>
+          <i className="paper plane icon"></i>
           Sent
-          <div class="ui label">0</div>
+          <div className="ui label">0</div>
         </a>
         <a
           onClick={() => {
             setSidebarSection("trash");
           }}
-          class="item"
+          className="item"
         >
-          <i class="trash icon"></i>
+          <i className="trash icon"></i>
           Trash
-          <div class="ui label">0</div>
+          <div className="ui label">0</div>
         </a>
         <a
           onClick={() => {
             setSidebarSection("spam");
           }}
-          class="item"
+          className="item"
         >
-          <i class="warning icon"></i>
+          <i className="warning icon"></i>
           Spam
-          <div class="ui label">1</div>
+          <div className="ui label">1</div>
         </a>
       </div>
       
