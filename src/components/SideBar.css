@@ -1,0 +1,10 @@
+.btn.compose {
+    color: #fff;
+    padding: 30px 15px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .1s linear;
+    width: 100%;
+    @include background-image(linear-gradient(bottom right, $blue-1, $blue-2));
+    
+}
