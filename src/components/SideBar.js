@@ -19,13 +19,16 @@ const SideBar = ({ emails, setSidebarSection }) => {
 			else {
 				return previous;
 			}
-		}.bind(this), 0);
+    }.bind(this), 0);
+    
+
 
   return (
     <div id="sidebar">
       <div className="sidebar__compose">
         <a href="#" className="btn compose">
-          Compose <i className="edit icon"></i>
+          Compose 
+          <i className="edit icon"></i>
         </a>
       </div>
       <ul className="sidebar__inboxes">
