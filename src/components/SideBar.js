@@ -1,8 +1,25 @@
 import React from "react";
 
 const SideBar = ({ emails, setSidebarSection }) => {
-  var unreadCount = 0;
-  var deletedCount = 0;
+  var unreadCount = emails.reduce(
+		function(previous, msg) {
+			if (msg.read !== "true" ) {
+				return previous + 1;
+			}
+			else {
+				return previous;
+			}
+		}.bind(this), 0);
+
+	var deletedCount = emails.reduce(
+		function(previous, msg) {
+			if (msg.tag === "deleted") {
+				return previous + 1;
+			}
+			else {
+				return previous;
+			}
+		}.bind(this), 0);
 
   return (
     <div id="sidebar">

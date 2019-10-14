@@ -10,6 +10,7 @@ import { API_URL } from "../apis/Mock";
 class App extends React.Component {
   constructor(args) {
     super(args);
+
     this.state = {
       selectedEmailId: 0,
       currentSection: "inbox",
@@ -21,6 +22,27 @@ class App extends React.Component {
     axios.get(API_URL).then(res => {
       const emails = res.data;
       this.setState({ emails });
+    });
+  }
+
+  deleteMessage(id) {
+    // Mark the message as 'deleted'
+    const emails = this.state.emails;
+    const index = emails.findIndex(x => x.id === id);
+    emails[index].tag = "deleted";
+
+    // Select the next message in the list
+    let selectedEmailId = "";
+    for (const email of emails) {
+      if (email.tag === this.state.currentSection) {
+        selectedEmailId = email.id;
+        break;
+      }
+    }
+
+    this.setState({
+      emails,
+      selectedEmailId
     });
   }
 
@@ -64,7 +86,7 @@ class App extends React.Component {
             onEmailSelected={id => {
               this.openEmail(id);
             }}
-            selectedEmailId={currentEmail.id}
+            //selectedEmailId={currentEmail.id}
             currentSection={this.state.currentSection}
           />
 
