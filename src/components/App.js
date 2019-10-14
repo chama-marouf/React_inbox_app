@@ -4,9 +4,8 @@ import SideBar from "./SideBar";
 import EmailListItem from "./EmailListItem";
 import EmailList from "./EmailList";
 import EmailDetails from "./EmailDetails";
-import data from "../data/emails.json";
 import axios from "axios";
-import {API_URL} from "../apis/Mock";
+import { API_URL } from "../apis/Mock";
 
 class App extends React.Component {
   constructor(args) {
@@ -38,18 +37,18 @@ class App extends React.Component {
   }
 
   openEmail(id) {
-	const { emails }  = this.state;
-	const index = emails.findIndex(x => x.id === id);
-	emails[index].read = true;
-	this.setState({
-		selectedEmailId: index,
-		emails
-	});
-}
+    const { emails } = this.state;
+    const index = emails.findIndex(x => x.id === id);
+    emails[index].read = true;
+    this.setState({
+      selectedEmailId: index,
+      emails
+    });
+  }
 
   render() {
-    const {emails, selectedEmailId} = this.state;
-    const currentEmail = emails.length>0 ? emails[selectedEmailId]:{};
+    const { emails, selectedEmailId } = this.state;
+    const currentEmail = emails.length > 0 ? emails[selectedEmailId] : {};
     return (
       <div>
         <SideBar
